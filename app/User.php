@@ -26,4 +26,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Get all content owned by the user.
+     */
+    public function content()
+    {
+        return $this->hasMany(Content::class);
+    }
+
+    /**
+     * Get the roles attached to this user.
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class)->as('user_roles')->withTimestamps();
+    }
 }
