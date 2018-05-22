@@ -154,11 +154,10 @@ return [
         /*
          * Application Service Providers...
          */
-        MediaGal\Providers\AppServiceProvider::class,
-        MediaGal\Providers\AuthServiceProvider::class,
-        // MediaGal\Providers\BroadcastServiceProvider::class,
-        MediaGal\Providers\EventServiceProvider::class,
-        MediaGal\Providers\RouteServiceProvider::class,
+        MediaGal\Core\Providers\AppServiceProvider::class,
+        MediaGal\Core\Providers\AuthServiceProvider::class,
+        MediaGal\Core\Providers\EventServiceProvider::class,
+        MediaGal\Core\Providers\RouteServiceProvider::class,
 
     ],
 

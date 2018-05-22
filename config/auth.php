@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => MediaGal\User::class,
+            'model' => MediaGal\Core\User::class,
         ],
 
         // 'users' => [
