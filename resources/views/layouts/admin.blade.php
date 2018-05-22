@@ -25,7 +25,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'MediaGal') }}
+                    {{ config('app.name', 'MediaGal') }} ADMIN
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -68,7 +68,29 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-3">
+                        <div class="card">
+                            <div class="card-header">Core admin</div>
+                            <div clas="card-body">
+                                <nav>
+                                    <ul class="nav flex-column">
+                                        @foreach(config('admin.coreMenu') as $entry)
+                                            <li class="nav-item">
+                                                <a class="nav-link active" href="{{ route($entry['route']) }}">{{ $entry['label'] }}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        @yield('content')
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
     @yield('scripts')
