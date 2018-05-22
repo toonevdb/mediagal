@@ -18,7 +18,7 @@
                 <div class="card-body">
                     @forelse($user->content as $content)
                         <div class="">
-                            {{ $content->id }}
+                            {!! $content->renderer()->original() !!}
                         </div>
                     @empty
                         <em>__('user.no_uploads')</em>
