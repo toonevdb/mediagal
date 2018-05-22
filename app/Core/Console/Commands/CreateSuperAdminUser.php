@@ -3,7 +3,7 @@
 namespace MediaGal\Core\Console\Commands;
 
 use Hash;
-use MediaGal\User;
+use MediaGal\Core\User;
 use Illuminate\Console\Command;
 
 class CreateSuperAdminUser extends Command

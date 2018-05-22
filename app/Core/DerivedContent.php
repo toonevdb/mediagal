@@ -7,12 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class DerivedContent extends Model
 {
     /**
+     * Name of the database table.
+     *
+     * @var string
+     */
+    protected $table = 'derived_content';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'plugin',
+        'filename', 'name', 'plugin',
     ];
 
     /**

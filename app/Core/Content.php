@@ -7,12 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class Content extends Model
 {
     /**
+     * Name of the database table.
+     *
+     * @var string
+     */
+    protected $table = 'content';
+    
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'type', 'name', 'description',
+        'type', 'filename', 'name', 'description',
     ];
 
     /**
@@ -29,5 +36,15 @@ class Content extends Model
     public function owner()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Storage key attibute.
+     *
+     * @return string
+     */
+    public function getStorageKeyAttribute()
+    {
+        return $this->attributes['id'].'/'.$this->attributes['filename'];
     }
 }

@@ -17,7 +17,8 @@ class CreateCoreTables extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('type');
-            $table->string('name');
+            $table->string('filename');
+            $table->string('name')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
 
@@ -28,6 +29,7 @@ class CreateCoreTables extends Migration
         Schema::create('derived_content', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('content_id')->unsigned();
+            $table->string('type');
             $table->string('name');
             $table->string('plugin');
 
