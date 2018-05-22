@@ -210,4 +210,8 @@ return [
 
     ],
 
+    'core_plugin_providers' => [
+        \MediaGal\Plugins\Album\AlbumPluginProvider::class,
+    ],
+
 ];

@@ -25,7 +25,7 @@ class ContentRenderer
     /**
      * Constructor.
      *
-     * @param \MediaGal\Content $content
+     * @param \MediaGal\Core\Content $content
      */
     public function __construct(Content $content)
     {
