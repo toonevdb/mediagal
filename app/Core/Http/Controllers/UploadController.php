@@ -3,6 +3,7 @@
 namespace MediaGal\Core\Http\Controllers;
 
 use MediaGal\Core\Content;
+use MediaGal\Core\Events\ContentUploaded;
 use Illuminate\Http\Request;
 use \Illuminate\Contracts\Filesystem\Factory as FSFactory;
 
@@ -32,11 +33,22 @@ class UploadController extends Controller
         $this->disk = $filesystem->disk(static::DISK_NAME);
     }
 
+    /**
+     * Show the upload form.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function form()
     {
         return view('upload.form');
     }
 
+    /**
+     * Handle the upload of the form.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return void
+     */
     public function handle(Request $request)
     {
         if ($request->content->isValid()) {
@@ -48,6 +60,8 @@ class UploadController extends Controller
             $content = $request->user()->content()->create($data);
 
             $request->content->storeAs('', $content->storageKey, static::DISK_NAME);
+
+            event(new ContentUploaded($content));
         }
     }
 }
