@@ -38,7 +38,7 @@ class ContentRenderer
             // TODO: avoid using Storage facade (we might need a content url builder for derived)
             $url = Storage::disk('content')->url($this->content->storageKey);
             
-            return view('content.image', compact('url'));
+            return view('content-renderer.image', compact('url'));
         }
 
         throw new \DomainException('ContentRenderer only supports images');

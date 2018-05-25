@@ -14,14 +14,14 @@
                         </div>
                     @endif
 
-                    <content-uploader :url="'{{ route('upload.handle') }}'" :csrf-token="'{{ csrf_token() }}'"></content-uploader>
-                    {{--
-                    <form action="{{ route('upload.handle') }}" class="dropzone">
-                        <div class="fallback">
-                            <input name="file" type="file" multiple />
-                        </div>
-                    </form>
-                    --}}
+                    <content-uploader 
+                        :url="'{{ route('upload.handle') }}'" 
+                        :csrf-token="'{{ csrf_token() }}'"
+                        :redirect="'{{ route('content.actions') }}'"
+                    ></content-uploader>
+
+
+                    {{ csrf_field() }}
                 </div>
             </div>
         </div>

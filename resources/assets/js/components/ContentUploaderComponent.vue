@@ -10,22 +10,40 @@
 
 <script>
     import Dropzone from 'dropzone'
+    import {post_to_url} from '../helpers'
     
     export default {
-        props: ['url', 'csrfToken'],
+        props: ['url', 'csrfToken', 'redirect'],
         
         mounted() {
             Dropzone.options.contentUploader = false;
+
+            var contentList = [];
             
-            console.info('url', this.url);
             var params = {
                 url: this.url,
                 paramName: 'content',
-                headers: {'X-CSRF-TOKEN': this.csrfToken}
+                headers: {'X-CSRF-TOKEN': this.csrfToken},
+                success: (file, response) => {
+                    if (response.success) {
+                        contentList.push(response.data.content)
+                    }
+                },
+                queuecomplete: () => {
+                    var data = {
+                        ids: contentList.reduce((ids, content) => {
+                            ids.push(content.id)
+                            return ids
+                        }, []),
+                        '_token': this.csrfToken
+                    }
+                    
+                    console.info('redir', this.redirect, data)
+                    post_to_url(this.redirect, data)
+                }
             }
 
             var myDropzone = new Dropzone("div#contentUploader", params)
-            console.log('Component mounted.', myDropzone)
         }
     }
 </script>

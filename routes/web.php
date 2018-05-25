@@ -22,4 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/upload', 'UploadController@form')->name('upload.form');
 Route::post('/upload', 'UploadController@handle')->name('upload.handle');
 
+Route::get('/content/{content}', 'ContentController@view')->name('content.view');
+Route::post('/content/actions', 'ContentController@actions')->name('content.actions');
+
 Route::get('/users/{user}', 'UserController@detail')->name('user.detail');

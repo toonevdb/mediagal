@@ -31,6 +31,8 @@ class UploadController extends Controller
     public function __construct(FSFactory $filesystem)
     {
         $this->disk = $filesystem->disk(static::DISK_NAME);
+
+        $this->middleware('auth');
     }
 
     /**
@@ -62,6 +64,8 @@ class UploadController extends Controller
             $request->content->storeAs('', $content->storageKey, static::DISK_NAME);
 
             event(new ContentUploaded($content));
+
+            return $this->jsonSuccess(compact('content'));
         }
     }
 }

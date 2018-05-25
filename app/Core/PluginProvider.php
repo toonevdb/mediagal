@@ -91,7 +91,7 @@ abstract class PluginProvider implements Contracts\PluginProvider
     }
 
     /**
-     * Content uploaded listeners.
+     * Content uploaded event listeners.
      *
      * @return array
      */
@@ -139,6 +139,7 @@ abstract class PluginProvider implements Contracts\PluginProvider
 
         if ($this->adminRoutesFile()) {
             Route::prefix($this->slug())
+                 ->name($this->slug().'.')
                  ->middleware('web')
                  ->namespace($namespace)
                  ->group($this->adminRoutesFile());
