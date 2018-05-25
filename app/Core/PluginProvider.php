@@ -2,6 +2,7 @@
 
 namespace MediaGal\Core;
 
+use ReflectionClass;
 use MediaGal\Core\Events\ContentUploaded;
 use Event;
 use Route;
@@ -38,6 +39,18 @@ abstract class PluginProvider implements Contracts\PluginProvider
     protected $authActions = [];
 
     /**
+     * Reflection of the actual plugin provider.
+     *
+     * @var \ReflectionClass
+     */
+    protected $reflector;
+
+    public function __construct()
+    {
+        $this->reflector = new ReflectionClass(get_class($this));
+    }
+
+    /**
      * Plugin name.
      *
      * @return string
@@ -64,7 +77,7 @@ abstract class PluginProvider implements Contracts\PluginProvider
      */
     public function frontRoutesFile(): string
     {
-        return realpath(__DIR__.'routes/front.php');
+        return realpath(dirname($this->reflector->getFileName()).'/routes/front.php');
     }
 
     /**
@@ -74,7 +87,7 @@ abstract class PluginProvider implements Contracts\PluginProvider
      */
     public function adminRoutesFile(): string
     {
-        return realpath(__DIR__.'routes/admin.php');
+        return realpath(dirname($this->reflector->getFileName()).'/routes/admin.php');
     }
 
     /**
@@ -104,25 +117,37 @@ abstract class PluginProvider implements Contracts\PluginProvider
      */
     public function viewPath(): string
     {
-        return realpath(__DIR__.'resources/views');
+        return realpath(dirname($this->reflector->getFileName()).'/resources/views');
     }
 
-    public function registerWithApp($app)
+    /**
+     * Register the plugin with the app.
+     *
+     * @return void
+     */
+    public function registerWithApp()
     {
-        Route::prefix($this->slug())
-             ->middleware('web')
-             ->namespace(__DIR__)
-             ->group($this->frontRoutesFile());
+        $namespace = $this->reflector->getNamespaceName().'\Http';
+        
+        if ($this->frontRoutesFile()) {
+            Route::prefix($this->slug())
+                 ->name($this->slug().'.')
+                 ->middleware('web')
+                 ->namespace($namespace)
+                 ->group($this->frontRoutesFile());
+        }
 
-        Route::prefix($this->slug())
-             ->middleware('web')
-             ->namespace(__DIR__)
-             ->group($this->adminRoutesFile());
+        if ($this->adminRoutesFile()) {
+            Route::prefix($this->slug())
+                 ->middleware('web')
+                 ->namespace($namespace)
+                 ->group($this->adminRoutesFile());
+        }
 
         foreach($this->contentUploadedListeners() as $listener) {
             Event::listen(ContentUploaded::class, $listener);
         }
 
-        View::registerNamespace($this->slug(), $this->viewPath());
+        View::addNamespace($this->slug(), $this->viewPath());
     }
 }

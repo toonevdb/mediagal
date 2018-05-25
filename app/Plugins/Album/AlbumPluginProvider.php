@@ -21,20 +21,6 @@ class AlbumPluginProvider extends PluginProvider
     protected $slug = 'album';
 
     /**
-     * Plugin frontend routes.
-     *
-     * @var array
-     */
-    protected $frontRoutes = [];
-
-    /**
-     * Plugin admin routes.
-     *
-     * @var array
-     */
-    protected $adminRoutes = [];
-
-    /**
      * Auth actions.
      *
      * @var array

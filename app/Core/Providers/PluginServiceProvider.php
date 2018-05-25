@@ -24,7 +24,7 @@ class PluginServiceProvider extends ServiceProvider
     public function register()
     {
         foreach (config('app.core_plugin_providers') as $entry) {
-            (new $entry())->registerWithApp($this->app);
+            (new $entry())->registerWithApp();
         }
     }
 }

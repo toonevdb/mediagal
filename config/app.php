@@ -157,6 +157,7 @@ return [
         MediaGal\Core\Providers\AppServiceProvider::class,
         MediaGal\Core\Providers\AuthServiceProvider::class,
         MediaGal\Core\Providers\EventServiceProvider::class,
+        MediaGal\Core\Providers\PluginServiceProvider::class,
         MediaGal\Core\Providers\RouteServiceProvider::class,
 
     ],
