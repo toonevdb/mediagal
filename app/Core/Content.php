@@ -2,6 +2,7 @@
 
 namespace MediaGal\Core;
 
+use Storage;
 use Illuminate\Database\Eloquent\Model;
 
 class Content extends Model
@@ -12,6 +13,15 @@ class Content extends Model
      * @var string
      */
     protected $table = 'content';
+
+    /**
+     * Dynamic properties to append to the model.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'url',
+    ];
     
     /**
      * The attributes that are mass assignable.
@@ -41,6 +51,16 @@ class Content extends Model
     public function renderer()
     {
         return new ContentRenderer($this);
+    }
+
+    /**
+     * Url attribute.
+     *
+     * @return string
+     */
+    public function getUrlAttribute()
+    {
+        return Storage::disk('content')->url($this->getStorageKeyAttribute());
     }
 
     /**

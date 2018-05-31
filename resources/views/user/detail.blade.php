@@ -16,13 +16,7 @@
             <div class="card">
                 <div class="card-header">__('user.recent')</div>
                 <div class="card-body">
-                    @forelse($user->content as $content)
-                        <div class="">
-                            {!! $content->renderer()->original() !!}
-                        </div>
-                    @empty
-                        <em>__('user.no_uploads')</em>
-                    @endforelse
+                    <content-list :items="{{ json_encode($user->content) }}" :selected="[]"></content-list>
                 </div>
             </div>
         </div>

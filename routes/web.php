@@ -22,6 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/upload', 'UploadController@form')->name('upload.form');
 Route::post('/upload', 'UploadController@handle')->name('upload.handle');
 
+Route::get('/content/actions', 'ContentController@actions')->name('content.actions_get'); // todo: remove this route
 Route::get('/content/{content}', 'ContentController@view')->name('content.view');
 Route::post('/content/actions', 'ContentController@actions')->name('content.actions');
 

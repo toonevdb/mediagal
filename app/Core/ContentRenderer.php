@@ -4,6 +4,7 @@ namespace MediaGal\Core;
 
 use Storage;
 
+// TODO: remove this content renderer, rendering should be done in frontend exclusively
 class ContentRenderer
 {
     /**

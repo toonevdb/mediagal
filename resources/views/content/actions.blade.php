@@ -8,10 +8,8 @@
                 <div class="card-header">Content actions</div>
 
                 <div class="card-body">
-                    <ul>
-                        @foreach($contentList as $content)
-                            <li>{!! $content->renderer()->original() !!}</li>
-                        @endforeach
+                    <ul class="content-list">
+                        <content-list :items="{{ json_encode($contentList) }}"></content-list>
                     </ul>
                 </div>
             </div>

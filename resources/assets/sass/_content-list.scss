@@ -1,0 +1,44 @@
+.content-list {
+    .tools {
+        & + * {
+            clear: both;
+        }
+    }
+    
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        list-style-type: none;
+
+        li {
+            width: 100%;
+            margin: auto;
+            padding: 0.4rem;
+            position: relative;
+
+            @include media-breakpoint-up(sm) {
+                max-width: 15rem;
+            }
+
+            .selection {
+                top: 0.5rem;
+                right: 0.5rem;
+                background: #FFF;
+                position: absolute;
+                padding: 0.25rem 0.25rem 0 0.4rem;
+
+                svg {
+                    fill: #FFF;
+                    transition: fill 0.4s ease;
+                    animation-fill-mode: forwards;
+                }
+            }
+
+            &.selected {
+                .selection svg {
+                    fill: #488214;
+                }
+            }
+        }
+    }
+}
