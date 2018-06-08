@@ -8,9 +8,7 @@
                 <div class="card-header">Content actions</div>
 
                 <div class="card-body">
-                    <ul class="content-list">
-                        <content-list :items="{{ json_encode($contentList) }}"></content-list>
-                    </ul>
+                    <content-actions :items="{{ json_encode($contentList) }}"></content-actions>
                 </div>
             </div>
         </div>

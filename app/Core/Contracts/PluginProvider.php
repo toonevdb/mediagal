@@ -52,4 +52,25 @@ interface PluginProvider
      * @return string
      */
     public function viewPath(): string;
+
+    /**
+     * Vue components mapping.
+     *
+     * @return array
+     */
+    public function vueComponents(): array;
+
+    /**
+     * Vue components that are content actions.
+     *
+     * @return array
+     */
+    public function contentActionComponents(): array;
+
+    /**
+     * Register the plugin with the app.
+     *
+     * @return void
+     */
+    public function registerWithApp();
 }

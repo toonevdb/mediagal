@@ -12,9 +12,10 @@
     import Dropzone from 'dropzone'
     import {post_to_url} from '../helpers'
     
+    
     export default {
         props: ['url', 'csrfToken', 'redirect'],
-        
+
         mounted() {
             Dropzone.options.contentUploader = false;
 
@@ -38,7 +39,6 @@
                         '_token': this.csrfToken
                     }
                     
-                    console.info('redir', this.redirect, data)
                     post_to_url(this.redirect, data)
                 }
             }

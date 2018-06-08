@@ -28,10 +28,6 @@
             return {selected: []}
         },
 
-        mounted() {
-            console.info('Content list mounted00', this.items, this.selected)
-        },
-
         methods: {
             toggle(id) {
                 var index = this.selected.indexOf(id)

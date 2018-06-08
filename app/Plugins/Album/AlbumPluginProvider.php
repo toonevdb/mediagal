@@ -28,4 +28,21 @@ class AlbumPluginProvider extends PluginProvider
     protected $authActions = [
         'album.view', 'album.create', 'album.edit', 'album.delete',
     ];
+
+    /**
+     * Vue components mapping.
+     *
+     * @var array
+     */
+    protected $vueComponents = [
+        'album' => '/resources/js/components/AlbumComponent.vue',
+        'link-to-album' => '/resources/js/components/LinkToAlbumComponent.vue',
+    ];
+
+    /**
+     * Content action components.
+     *
+     * @var array
+     */
+    protected $contentActionComponents = ['link-to-album'];
 }

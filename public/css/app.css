@@ -10678,3 +10678,49 @@ a.text-dark:focus {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+.content-list .tools + * {
+  clear: both;
+}
+
+.content-list ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  list-style-type: none;
+}
+
+.content-list ul li {
+  width: 100%;
+  margin: auto;
+  padding: 0.4rem;
+  position: relative;
+}
+
+@media (min-width: 576px) {
+  .content-list ul li {
+    max-width: 15rem;
+  }
+}
+
+.content-list ul li .selection {
+  top: 0.5rem;
+  right: 0.5rem;
+  background: #FFF;
+  position: absolute;
+  padding: 0.25rem 0.25rem 0 0.4rem;
+}
+
+.content-list ul li .selection svg {
+  fill: #FFF;
+  -webkit-transition: fill 0.4s ease;
+  transition: fill 0.4s ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.content-list ul li.selected .selection svg {
+  fill: #488214;
+}
+

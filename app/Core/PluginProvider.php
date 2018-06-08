@@ -39,6 +39,20 @@ abstract class PluginProvider implements Contracts\PluginProvider
     protected $authActions = [];
 
     /**
+     * Vue components mapping.
+     *
+     * @var array
+     */
+    protected $vueComponents = [];
+
+    /**
+     * Content action components.
+     *
+     * @var array
+     */
+    protected $contentActionComponents = [];
+
+    /**
      * Reflection of the actual plugin provider.
      *
      * @var \ReflectionClass
@@ -118,6 +132,32 @@ abstract class PluginProvider implements Contracts\PluginProvider
     public function viewPath(): string
     {
         return realpath(dirname($this->reflector->getFileName()).'/resources/views');
+    }
+
+    /**
+     * Vue components mapping.
+     *
+     * @return array
+     */
+    public function vueComponents(): array
+    {
+        $components = [];
+
+        foreach ($this->vueComponents as $name => $file) {
+            $components[$name] = realpath(dirname($this->reflector->getFileName()).$file);
+        }
+
+        return $components;
+    }
+
+    /**
+     * Vue components that are content actions.
+     *
+     * @return array
+     */
+    public function contentActionComponents(): array
+    {
+        return $this->contentActionComponents;
     }
 
     /**
