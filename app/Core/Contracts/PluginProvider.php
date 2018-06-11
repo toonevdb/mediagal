@@ -54,6 +54,13 @@ interface PluginProvider
     public function viewPath(): string;
 
     /**
+     * Migration path.
+     *
+     * @return string
+     */
+    public function migrationPath(): string;
+
+    /**
      * Vue components mapping.
      *
      * @return array

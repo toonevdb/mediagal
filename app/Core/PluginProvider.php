@@ -135,6 +135,16 @@ abstract class PluginProvider implements Contracts\PluginProvider
     }
 
     /**
+     * Migration path.
+     *
+     * @return string
+     */
+    public function migrationPath(): string
+    {
+        return realpath(dirname($this->reflector->getFileName()).'/migrations');
+    }
+
+    /**
      * Vue components mapping.
      *
      * @return array
@@ -178,7 +188,7 @@ abstract class PluginProvider implements Contracts\PluginProvider
         }
 
         if ($this->adminRoutesFile()) {
-            Route::prefix($this->slug())
+            Route::prefix('admin/'.$this->slug())
                  ->name($this->slug().'.')
                  ->middleware('web')
                  ->namespace($namespace)
